@@ -8,8 +8,6 @@ const cors = require("cors");
 
 const app = express();
 
-
-
 // Configure ENV File & require database connection file
 dotenv.config({ path: "./config.env" });
 require("./db/conn");
@@ -27,7 +25,8 @@ app.use(cookieParser());
 
 // fix strict-origin-when-cross-origin heroku
 
-app.use(cors());
+app.use(cors({ origin: "https://mern-app-project-frontend.herokuapp.com" }));
+
 app.get("/", function (req, res, next) {
   res.json({ msg: "This is CORS-enabled for all origins!" });
 });
