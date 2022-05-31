@@ -116,6 +116,6 @@ app.get("/logout", (req, res) => {
 });
 
 // Run Server
-app.listen(port, () => {
+app.listen(port || 3000, () => {
   console.log("Server is Listening");
 });
