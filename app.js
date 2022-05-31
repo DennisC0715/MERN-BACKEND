@@ -25,7 +25,14 @@ app.use(cookieParser());
 
 // fix strict-origin-when-cross-origin heroku
 
-app.use(cors({ origin: "https://mern-app-project-frontend.herokuapp.com" }));
+app.use(
+  cors({
+    origin: [
+      "https://mern-app-project-frontend.herokuapp.com",
+      "https://mern-web-application.vercel.app",
+    ],
+  })
+);
 
 app.get("/", function (req, res, next) {
   res.json({ msg: "This is CORS-enabled for all origins!" });
