@@ -19,7 +19,12 @@ const Message = require("./models/msgSchema");
 const authenticate = require("./middleware/authenticate");
 
 //These Method is Used to Get Data and cookie from frontEnd
-app.use(cors({ origin: true }));
+app.use(
+  cors({
+    origin: "https://mern-app-project-frontend.herokuapp.com/",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
