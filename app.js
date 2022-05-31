@@ -22,7 +22,7 @@ const authenticate = require("./middleware/authenticate");
 app.use(
   cors({
     origin: "https://mern-app-project-frontend.herokuapp.com/",
-    credentials: true,
+    credentials: true
   })
 );
 app.use(express.json());
