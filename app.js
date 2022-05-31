@@ -4,7 +4,7 @@ const express = require("express");
 const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
-const cors = require("cors");
+// const cors = require("cors");
 
 const app = express();
 
@@ -25,21 +25,22 @@ app.use(cookieParser());
 
 // fix strict-origin-when-cross-origin heroku
 
-app.use(
-  cors({
-    origin: [
-      "https://mern-app-project-frontend.herokuapp.com",
-      "https://mern-web-application.vercel.app",
-    ],
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "https://mern-app-project-frontend.herokuapp.com",
+//       "https://mern-web-application.vercel.app",
+//     ],
+//   })
+// );
 
-app.get("/", function (req, res, next) {
-  res.json({ msg: "This is CORS-enabled for all origins!" });
-});
-// app.get("/", (req, res) => {
-//   res.send("Hello World");
+// app.get("/", function (req, res, next) {
+//   res.json({ msg: "This is CORS-enabled for all origins!" });
 // });
+app.get("/", (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+  res.send("Hello World");
+});
 
 //Registration
 app.post("/register", async (req, res) => {
@@ -85,11 +86,14 @@ app.post("/login", async (req, res) => {
           expires: new Date(Date.now() + 86400000),
           httpOnly: true,
         });
+        res.set("Access-Control-Allow-Origin", "*");
         res.status(200).send("LoggedIn");
       } else {
+        res.set("Access-Control-Allow-Origin", "*");
         res.status(400).send("Invalid Credentials");
       }
     } else {
+      res.set("Access-Control-Allow-Origin", "*");
       res.status(400).send("email is not exist in our system, please register");
     }
   } catch (error) {
