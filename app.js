@@ -15,6 +15,7 @@ const port = process.env.PORT;
 // Require Model
 const Users = require("./models/userSchema");
 const Message = require("./models/msgSchema");
+const authenticate = require("./middleware/authenticate");
 
 //These Method is Used to Get Data and cookie from frontEnd
 app.use(express.json());
@@ -59,7 +60,7 @@ app.post("/login", async (req, res) => {
     // Find User if Exist
     const user = await Users.findOne({ email: email });
     if (user) {
-      // Vertify Password
+      // Verify Password
       const isMatch = await bcryptjs.compare(password, user.password);
       if (isMatch) {
         // Generate Token Which is Define in User Schema
@@ -71,7 +72,7 @@ app.post("/login", async (req, res) => {
         });
         res.status(200).send("LoggedIn");
       } else {
-        res.status(400).send("InVilid Credentials");
+        res.status(400).send("Invalid Credentials");
       }
     } else {
       res.status(400).send("email is not exist in our system, please register");
@@ -102,6 +103,10 @@ app.post("/message", async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+//Authentication
+
+app.get("/auth", authenticate, (req, res) => {});
 
 //Logout
 
