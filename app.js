@@ -8,12 +8,7 @@ const cors = require("cors");
 
 const app = express();
 
-// fix strict-origin-when-cross-origin heroku
 
-app.use(cors());
-app.get("/", function (req, res, next) {
-  res.json({ msg: "This is CORS-enabled for all origins!" });
-});
 
 // Configure ENV File & require database connection file
 dotenv.config({ path: "./config.env" });
@@ -30,9 +25,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
+// fix strict-origin-when-cross-origin heroku
+
+app.use(cors());
+app.get("/", function (req, res, next) {
+  res.json({ msg: "This is CORS-enabled for all origins!" });
 });
+// app.get("/", (req, res) => {
+//   res.send("Hello World");
+// });
 
 //Registration
 app.post("/register", async (req, res) => {
