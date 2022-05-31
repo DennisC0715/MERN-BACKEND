@@ -21,7 +21,7 @@ const authenticate = require("./middleware/authenticate");
 //These Method is Used to Get Data and cookie from frontEnd
 app.use(
   cors({
-    origin: "https://mern-app-project-frontend.herokuapp.com/",
+    origin: "*",
     credentials: true
   })
 );
