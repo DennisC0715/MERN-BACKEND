@@ -125,7 +125,9 @@ app.post("/message", async (req, res) => {
 
 //Authentication
 
-app.get("/auth", authenticate, (req, res) => {});
+app.get("/auth", authenticate, (req, res) => {
+  res.set("Access-Control-Allow-Origin", "*");
+});
 
 //Logout
 
