@@ -19,14 +19,12 @@ const Message = require("./models/msgSchema");
 const authenticate = require("./middleware/authenticate");
 
 //These Method is Used to Get Data and cookie from frontEnd
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // fix strict-origin-when-cross-origin heroku
-
-
 
 // app.get("/", function (req, res, next) {
 //   res.json({ msg: "This is CORS-enabled for all origins!" });
