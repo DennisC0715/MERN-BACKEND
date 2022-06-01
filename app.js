@@ -22,11 +22,10 @@ const authenticate = require("./middleware/authenticate");
 // app.use(cors());
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", [
-    "https://mern-app-project-frontend.herokuapp.com",
-    "https://mern-web-application.vercel.app/",
-    "http://localhost:3000/",
-  ]);
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://mern-app-project-frontend.herokuapp.com"
+  );
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested, Content-Type, Accept Authorization"
