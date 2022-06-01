@@ -80,14 +80,12 @@ app.post("/login", async (req, res) => {
           expires: new Date(Date.now() + 86400000),
           httpOnly: true,
         });
-        res.set("Access-Control-Allow-Origin", "*");
+
         res.status(200).send("LoggedIn");
       } else {
-        res.set("Access-Control-Allow-Origin", "*");
         res.status(400).send("Invalid Credentials");
       }
     } else {
-      res.set("Access-Control-Allow-Origin", "*");
       res.status(400).send("email is not exist in our system, please register");
     }
   } catch (error) {
